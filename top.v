@@ -26,20 +26,19 @@ module top(
     output [6:0] led
     );
     
-    Ripple_Counter(
-        .T(1),
+    Ripple_Counter ripCo(
+        .T(1'b1),
         .clk(btnC),
         .reset(btnU),
-        .Q1(led[0]),
-        .Q2(led[1]),
-        .Q3(led[2]),
+        .Q(led[2:0]),
         .notQ()
     );
     
-    Modulo_Divider(
+    Modulo_Divider modDi(
         .clk(btnC),
-        .reset(btnU)
-    
+        .reset(btnU),
+        .Q(led[5:3]),
+        .out(led[6])
     );
 endmodule
 
